@@ -1,5 +1,3 @@
-import kotlin.random.Random
-
 // Variable/constant set up
 const val MAX_TRIES = 10 // in 5..20
 const val SIZE_POSITIONS = 4 // in 2..6
