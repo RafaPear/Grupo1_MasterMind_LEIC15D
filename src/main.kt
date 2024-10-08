@@ -10,7 +10,7 @@ fun main() {
     println(secret)
     println("Find the code in $MAX_TRIES attempts.")
     println("$SIZE_POSITIONS positions and $SIZE_COLORS colors $COLORS")
-    for (numTries in 1..MAX_TRIES) {
+    //for (numTries in 1..MAX_TRIES) {
     //    val guess = readGuess(numTries)
     //    if (guess == secret) {
     //        println("Congratulations!\nYou got it right on your ${numTries}th try.")
@@ -39,22 +39,18 @@ fun generateSecret(): String {
     return returnStr
 }
 
+//Checks if a String has repeated Chars
 fun checkRepeated(str: String): Boolean {
     var rtrn = false
-    for (i in 0..SIZE_POSITIONS-1) {
-        for (j in 0..SIZE_POSITIONS-1) {
-            if (i != j) {
-                if (str[j] == str[i]) {
+    for (i in 0..SIZE_POSITIONS-1)
+        for (j in 0..SIZE_POSITIONS-1)
+            if (i != j)
+                if (str[j] == str[i])
                     rtrn = true
-                }
-            }
-        }
-    }
     return rtrn
 }
 
 //TODO: Function readGuess()
-
 
 //TODO: Function getCorrects()
 
