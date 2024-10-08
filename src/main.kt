@@ -8,10 +8,9 @@ val COLORS = FIRST_COLOR ..< FIRST_COLOR+SIZE_COLORS
 fun main() {
     val secret: String = generateSecret()
     println(secret)
-    checkRepeated(generateSecret())
-    //println("Find the code in $MAX_TRIES attempts.")
-    //println("$SIZE_POSITIONS positions and $SIZE_COLORS colors $COLORS")
-    //for (numTries in 1..MAX_TRIES) {
+    println("Find the code in $MAX_TRIES attempts.")
+    println("$SIZE_POSITIONS positions and $SIZE_COLORS colors $COLORS")
+    for (numTries in 1..MAX_TRIES) {
     //    val guess = readGuess(numTries)
     //    if (guess == secret) {
     //        println("Congratulations!\nYou got it right on your ${numTries}th try.")
@@ -24,26 +23,34 @@ fun main() {
     //println("You missed $MAX_TRIES attempts.")
 }
 
-//Generates a random sequence of 4 chars
+//Generates a random sequence of 4 diferent chars
 fun generateSecret(): String {
     var returnStr = ""
-    for (i in 0..SIZE_POSITIONS-1) {
-        returnStr += COLORS.random()
+    var tempB = true
+    while (tempB) {
+        for (i in 0..SIZE_POSITIONS - 1) {
+            returnStr += COLORS.random()
+        }
+        if (checkRepeated(returnStr)){
+            returnStr = ""
+        }
+        else tempB = false
     }
     return returnStr
 }
 
 fun checkRepeated(str: String): Boolean {
+    var rtrn = false
     for (i in 0..SIZE_POSITIONS-1) {
-        for (j in i..SIZE_POSITIONS-1) {
-            if (j != i){
-                println("i: " + i)
-                println("j: " + j)
-            //if (str[i] != str[i+j])
+        for (j in 0..SIZE_POSITIONS-1) {
+            if (i != j) {
+                if (str[j] == str[i]) {
+                    rtrn = true
+                }
             }
         }
     }
-    return true
+    return rtrn
 }
 
 //TODO: Function readGuess()
