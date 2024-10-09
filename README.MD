@@ -54,4 +54,5 @@ O objetivo do jogo é adivinhar o código secreto gerado pelo computador. O cód
 - Rafael Vermelho Pereira
 
 ## 📄 Licença
-Este projeto está licenciado sob a MIT License.
+Este projeto está licenciado sob a MIT License. Veja mais em [Licença](LICENSE.md)
+
