@@ -30,7 +30,7 @@ O objetivo do jogo é adivinhar o código secreto gerado pelo computador. O cód
 1. Clone o repositório:
    ```bash
    git clone https://github.com/RafaPear/Grupo1_MasterMind_LEIC15D
-   cd mastermind-game   
+   cd Grupo1_MasterMind_LEIC15D   
 
 2. Execute o jogo:
     ```bash
