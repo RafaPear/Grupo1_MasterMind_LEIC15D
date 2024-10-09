@@ -15,20 +15,19 @@ fun main() {
             println("Congratulations!\nYou got it right on your ${numTries}th try.")
             return
         }
-        println(getCorrects(guess, secret))
-//        val corrects = getCorrects(guess, secret)
-//        val swapped = getSwapped(guess, secret)
-//        printTry(numTries, guess, corrects, swapped)
+        val corrects = getCorrects(guess, secret)
+        val swapped = getSwapped(guess, secret)
+        printTry(numTries, guess, corrects, swapped)
     }
     println("You missed $MAX_TRIES attempts.")
 }
 
-// Generates a random a String of 4 diferent Chars
+// Generates a random a String of 4 different Chars
 fun generateSecret(): String {
     var returnStr = ""
     var tempB = true
     while (tempB) {
-        for (i in 0..SIZE_POSITIONS - 1)
+        for (i in 0..<SIZE_POSITIONS)
             returnStr += COLORS.random()
 
         if (checkRepeated(returnStr))
@@ -41,8 +40,8 @@ fun generateSecret(): String {
 // Checks if a String has repeated Chars.
 fun checkRepeated(str: String): Boolean {
     var isRepeated = false
-    for (i in 0..SIZE_POSITIONS-1)
-        for (j in 0..SIZE_POSITIONS-1)
+    for (i in 0..<SIZE_POSITIONS)
+        for (j in 0..<SIZE_POSITIONS)
             if (i != j)
                 if (str[j] == str[i])
                     isRepeated = true
@@ -55,27 +54,31 @@ fun checkRepeated(str: String): Boolean {
 // returns the guess as a string. The attempt
 // input (numTries) is probably just for cosmetic printing
 // purposes. The function must only allow an input equal to 4 Chars
-
 fun readGuess(tries: Int): String {
 
-    var readValue: String = ""
-    while (true) {
-        var matchesFound: Int = 0
+    val bold = "\u001B[1m"   // Code that initializes the Bold font
+    val italic = "\u001B[3m" // Code that initializes the Italic font
+    val reset = "\u001B[0m"  // Code that resets the text format
+    while (true){
+        var matchesFound = 0
 
         when (tries) {
-            1 -> print("1st attempt: ")
-            2 -> print("2nd attempt: ")
-            3 -> print("3rd attempt: ")
-            else -> print("${tries}th attempt: ")
+            1 -> print("1st attempt:${bold}${italic} ")
+            2 -> print("2nd attempt:${bold}${italic} ")
+            3 -> print("3rd attempt:${bold}${italic} ")
+            else -> print("${tries}th attempt:${bold}${italic} ")
         }
-        var readValue: String = readln()
+        val readValue: String = readln()
+        print(reset)
 
-        for (i in 0..SIZE_POSITIONS - 1)
-            for (j in 0..SIZE_COLORS - 1)
-                if (readValue[i] == FIRST_COLOR+j) matchesFound++
+        for (i in 0..<SIZE_POSITIONS) {
+            if (readValue.length != 4) break
+            for (j in 0..<SIZE_COLORS)
+                if (readValue[i] == FIRST_COLOR + j) matchesFound++
+        }
+
         if (readValue.length != 4 || matchesFound != SIZE_POSITIONS) {
             println("Invalid attempt!")
-            matchesFound = 0
         }
         else if (matchesFound == SIZE_POSITIONS) return readValue
     }
@@ -97,25 +100,43 @@ fun readGuess(tries: Int): String {
         }
 */
 
-
-
 // Checks how many guessed Chars are in the
 // same position as the answer.
-
 fun getCorrects(guess: String, answer: String): Int{
-    var tempReturn: Int = 0
-    for (i in 0..SIZE_POSITIONS-1)
+    var tempReturn = 0
+    for (i in 0..<SIZE_POSITIONS)
         if (guess[i] == answer[i])
             tempReturn++
 
     return tempReturn
 }
 
-
-// TODO: Function getSwapped()
-// Checks how many guessed Chars are in the
+// Checks how many guessed Chars are in
 // the answer but on the wrong place.
+fun getSwapped(guess: String, answer: String): Int {
 
+    var tempReturn = 0
+    for (i in 0..<SIZE_POSITIONS)
+        for (j in 0..<SIZE_POSITIONS)
+            if (i != j)
+                if (guess[i] == answer[j])
+                    tempReturn++
 
-// TODO: Function printTry()
-// Prints
+    return tempReturn
+}
+
+// Prints the results in a nice and readable way
+// shown as (example): "1st: ADFC -> 1C + 3T".
+// The syntax is presented as:
+// (numTries): (guess) -> (corrects) + (swapped)
+fun printTry(numTries: Int, guess: String, corrects: Int, swapped: Int){
+    var strOut = ""
+    when(numTries) {
+        1 -> strOut += "1st: "
+        2 -> strOut += "2nd: "
+        3 -> strOut += "3rd: "
+        else -> strOut += "${numTries}th: "
+    }
+    strOut += "$guess -> ${corrects}C + ${swapped}T"
+    println(strOut)
+}
