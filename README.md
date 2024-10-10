@@ -1,4 +1,4 @@
-# 🎮 Mastermind Game
+# 🎮 Mastermind Game (Version with indexes)
 
 Este projeto é uma implementação do clássico jogo Mastermind, desenvolvido como parte de um trabalho de programação para o curso de Engenharia Informática e Computadores no Instituto Superior de Engenharia de Lisboa (ISEL).
 
