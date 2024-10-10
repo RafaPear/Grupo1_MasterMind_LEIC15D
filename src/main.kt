@@ -1,4 +1,10 @@
-// Variable/constant set up
+/*
+Trabalho 1 de PG-LEIC2425SI Turma 15D
+Professor: Nuno Leite
+Grupo I: Francisco Mendes, Gustavo Costa e Rafael Pereira
+*/
+
+// variable/constant set up
 const val MAX_TRIES = 10 // in 5..20
 const val SIZE_POSITIONS = 4 // in 2..6
 const val SIZE_COLORS = 6 // in 2..10 and >= SIZE_POSITIONS
@@ -22,38 +28,24 @@ fun main() {
     println("You missed $MAX_TRIES attempts.")
 }
 
-// Generates a random a String of 4 different Chars
+// generates a random a String of 4 different Chars
 fun generateSecret(): String {
     var returnStr = ""
-    var tempB = true
-    while (tempB) {
-        for (i in 0..<SIZE_POSITIONS)
-            returnStr += COLORS.random()
 
-        if (checkRepeated(returnStr))
-            returnStr = ""
-        else tempB = false
+    while (returnStr.length < SIZE_POSITIONS) {
+        val randomChar = COLORS.random()
+        if (randomChar !in returnStr) {
+            returnStr += randomChar
+        }
     }
     return returnStr
 }
 
-// Checks if a String has repeated Chars.
-fun checkRepeated(str: String): Boolean {
-    var isRepeated = false
-    for (i in 0..<SIZE_POSITIONS)
-        for (j in 0..<SIZE_POSITIONS)
-            if (i != j)
-                if (str[j] == str[i])
-                    isRepeated = true
-
-    return isRepeated
-}
-
-// Prompts the user to input  their guess
+// prompts the user to input their guess
 // for the current attempt number and
-// returns the guess as a string. The attempt
+// returns the guess as a string. the attempt
 // input (numTries) is probably just for cosmetic printing
-// purposes. The function must only allow an input equal to 4 Chars
+// purposes. the function must only allow an input equal to 4 Chars
 fun readGuess(tries: Int): String {
     while (true){
         var matchesFound = 0
@@ -71,19 +63,21 @@ fun readGuess(tries: Int): String {
             if (readValue.length != SIZE_POSITIONS)
                 break
             for (j in 0..<SIZE_COLORS)
-                if (readValue[i] == FIRST_COLOR + j) matchesFound++
+                if (readValue[i] == FIRST_COLOR + j)
+                    matchesFound++
         }
 
-        if (readValue.length != 4 || matchesFound != SIZE_POSITIONS) {
+        if (readValue.length != SIZE_POSITIONS || matchesFound != SIZE_POSITIONS) {
             println("Invalid attempt!")
+        } else if (matchesFound == SIZE_POSITIONS) {
+            return readValue
         }
-        else if (matchesFound == SIZE_POSITIONS) return readValue
     }
 }
 
 // if the user input any small letter in their code
 // the program converts it to a respective capital letter
-// to present a code with 4 capital letters (eg: ABCD)
+// to present a code with 4 capital letters (eg: input - abCD -> output - ABCD)
 fun toUpper(strInput: String): String {
     var returnString = ""
     for (char in strInput){
@@ -96,7 +90,7 @@ fun toUpper(strInput: String): String {
     return returnString
 }
 
-// Checks how many guessed Chars are in the
+// checks how many guessed Chars are in the
 // same position as the answer.
 fun getCorrects(guess: String, answer: String): Int{
     var tempReturn = 0
@@ -107,7 +101,7 @@ fun getCorrects(guess: String, answer: String): Int{
     return tempReturn
 }
 
-// Checks how many guessed Chars are in
+// checks how many guessed Chars are in
 // the answer but on the wrong place.
 fun getSwapped(guess: String, answer: String): Int {
     var tempReturn = 0
@@ -121,9 +115,9 @@ fun getSwapped(guess: String, answer: String): Int {
     return tempReturn
 }
 
-// Prints the results in a nice and readable way
+// prints the results in a nice and readable way
 // shown as (example): "1st: ADFC -> 1C + 3T".
-// The syntax is presented as:
+// the syntax is presented as:
 // (numTries): (guess) -> (corrects) + (swapped)
 fun printTry(numTries: Int, guess: String, corrects: Int, swapped: Int){
     var strOut: String = when(numTries) {
@@ -132,6 +126,7 @@ fun printTry(numTries: Int, guess: String, corrects: Int, swapped: Int){
         3 -> "3rd: "
         else -> "${numTries}th: "
     }
+
     strOut += "$guess -> ${corrects}C + ${swapped}T"
     println(strOut)
 }

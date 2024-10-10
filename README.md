@@ -49,9 +49,9 @@ O objetivo do jogo é adivinhar o código secreto gerado pelo computador. O cód
 - Implementar a função `printTry()` para formatar e apresentar o estado das tentativas de forma mais clara.
 
 ## 👥 Contribuidores
-- Francisco .....
-- Gustavo .......
-- Rafael Vermelho Pereira
+- **Francisco Mendes**
+- **Gustavo Costa**
+- **Rafael Vermelho Pereira**
 
 ## 📄 Licença
 Este projeto está licenciado sob a MIT License. Veja mais em [Licença](LICENSE.md)
