@@ -1,4 +1,4 @@
-//master BRANCH
+//master BRANC
 
 // Variable/constant set up
 const val MAX_TRIES = 10 // in 5..20
