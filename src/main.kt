@@ -55,24 +55,21 @@ fun checkRepeated(str: String): Boolean {
 // input (numTries) is probably just for cosmetic printing
 // purposes. The function must only allow an input equal to 4 Chars
 fun readGuess(tries: Int): String {
-
-    val bold = "\u001B[1m"   // Code that initializes the Bold font
-    val italic = "\u001B[3m" // Code that initializes the Italic font
-    val reset = "\u001B[0m"  // Code that resets the text format
     while (true){
         var matchesFound = 0
 
         when (tries) {
-            1 -> print("1st attempt:${bold}${italic} ")
-            2 -> print("2nd attempt:${bold}${italic} ")
-            3 -> print("3rd attempt:${bold}${italic} ")
-            else -> print("${tries}th attempt:${bold}${italic} ")
+            1 -> print("1st attempt: ")
+            2 -> print("2nd attempt: ")
+            3 -> print("3rd attempt: ")
+            else -> print("${tries}th attempt: ")
         }
-        val readValue: String = readln()
-        print(reset)
+
+        val readValue: String = toUpper(readln())
 
         for (i in 0..<SIZE_POSITIONS) {
-            if (readValue.length != 4) break
+            if (readValue.length != SIZE_POSITIONS)
+                break
             for (j in 0..<SIZE_COLORS)
                 if (readValue[i] == FIRST_COLOR + j) matchesFound++
         }
@@ -84,21 +81,20 @@ fun readGuess(tries: Int): String {
     }
 }
 
-/*
-        var cont = 0
-        for (i in readValue){
-            cont ++
-            if (i in COLORS && readValue.length == 4){
-                if (cont == 4){
-                    matchesFound++
-                    return readValue
-                }
-            } else {
-                println("Invalid attempt!")
-                break
-            }
+// if the user input any small letter in their code
+// the program converts it to a respective capital letter
+// to present a code with 4 capital letters (eg: ABCD)
+fun toUpper(strInput: String): String {
+    var returnString = ""
+    for (char in strInput){
+        if (char in 'a'..'z') {
+            returnString += char - 32
+        } else if (char in 'A'..'Z'){
+            returnString += char
         }
-*/
+    }
+    return returnString
+}
 
 // Checks how many guessed Chars are in the
 // same position as the answer.
@@ -114,8 +110,8 @@ fun getCorrects(guess: String, answer: String): Int{
 // Checks how many guessed Chars are in
 // the answer but on the wrong place.
 fun getSwapped(guess: String, answer: String): Int {
-
     var tempReturn = 0
+
     for (i in 0..<SIZE_POSITIONS)
         for (j in 0..<SIZE_POSITIONS)
             if (i != j)
@@ -130,12 +126,11 @@ fun getSwapped(guess: String, answer: String): Int {
 // The syntax is presented as:
 // (numTries): (guess) -> (corrects) + (swapped)
 fun printTry(numTries: Int, guess: String, corrects: Int, swapped: Int){
-    var strOut = ""
-    when(numTries) {
-        1 -> strOut += "1st: "
-        2 -> strOut += "2nd: "
-        3 -> strOut += "3rd: "
-        else -> strOut += "${numTries}th: "
+    var strOut: String = when(numTries) {
+        1 -> "1st: "
+        2 -> "2nd: "
+        3 -> "3rd: "
+        else -> "${numTries}th: "
     }
     strOut += "$guess -> ${corrects}C + ${swapped}T"
     println(strOut)
