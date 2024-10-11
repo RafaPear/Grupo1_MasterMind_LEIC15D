@@ -31,7 +31,6 @@ fun main() {
 // generates a random a String of 4 different Chars
 fun generateSecret(): String {
     var returnStr = ""
-
     while (returnStr.length < SIZE_POSITIONS) {
         val randomChar = COLORS.random()
         if (randomChar !in returnStr) {
@@ -49,7 +48,6 @@ fun generateSecret(): String {
 fun readGuess(tries: Int): String {
     while (true){
         var matchesFound = 0
-
         when (tries) {
             1 -> print("1st attempt: ")
             2 -> print("2nd attempt: ")
@@ -59,20 +57,28 @@ fun readGuess(tries: Int): String {
 
         val readValue: String = toUpper(readln())
 
-        for (i in 0..<SIZE_POSITIONS) {
-            if (readValue.length != SIZE_POSITIONS)
-                break
-            for (j in 0..<SIZE_COLORS)
-                if (readValue[i] == FIRST_COLOR + j)
-                    matchesFound++
-        }
-
-        if (readValue.length != SIZE_POSITIONS || matchesFound != SIZE_POSITIONS) {
+        if (!readCheck(readValue)) {
             println("Invalid attempt!")
-        } else if (matchesFound == SIZE_POSITIONS) {
+        } else {
             return readValue
         }
     }
+}
+
+// Checks if a String Argument (guess: String)
+// matches all the requirements to be a
+// valid input Guess. Returns true
+// if the argument passes the check,
+// false if it does not.
+fun readCheck(guess: String): Boolean {
+    if (guess.length != SIZE_POSITIONS)
+        return false
+
+    for (eachChar in guess){
+        if (eachChar !in COLORS)
+            return false
+    }
+    return true
 }
 
 // if the user input any small letter in their code
@@ -97,7 +103,6 @@ fun getCorrects(guess: String, answer: String): Int{
     for (i in 0..<SIZE_POSITIONS)
         if (guess[i] == answer[i])
             tempReturn++
-
     return tempReturn
 }
 
@@ -105,13 +110,9 @@ fun getCorrects(guess: String, answer: String): Int{
 // the answer but on the wrong place.
 fun getSwapped(guess: String, answer: String): Int {
     var tempReturn = 0
-
     for (i in 0..<SIZE_POSITIONS)
-        for (j in 0..<SIZE_POSITIONS)
-            if (i != j)
-                if (guess[i] == answer[j])
-                    tempReturn++
-
+        if (guess[i] in answer && guess[i] != answer[i])
+            tempReturn++
     return tempReturn
 }
 
@@ -130,3 +131,4 @@ fun printTry(numTries: Int, guess: String, corrects: Int, swapped: Int){
     strOut += "$guess -> ${corrects}C + ${swapped}T"
     println(strOut)
 }
+
