@@ -35,11 +35,23 @@ fun readGuess(tries: Int): String {
             3 -> print("3rd attempt: ")
             else -> print("${tries}th attempt: ")
         }
-        val readValue: String = readln()
+        val readValue: String = toUppercase(readln())
         if (readCheck(readValue))
             println("Invalid attempt!")
         else return readValue
     }
+}
+
+// Turns a given String to uppercase
+fun toUppercase(str: String): String {
+    var out: String = ""
+    for (i in 0..<str.length){
+        if (str[i] <= 'z' && str[i] >= 'a')
+            out += str[i] - 32
+        else if (str[i] <= 'Z' && str[i] >= 'A')
+            out += str[i]
+    }
+    return out
 }
 
 // Checks if a String Argument (guess: String)
