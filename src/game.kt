@@ -44,11 +44,11 @@ fun readGuess(tries: Int): String {
 
 // Turns a given String to uppercase
 fun toUppercase(str: String): String {
-    var out: String = ""
+    var out = ""
     for (i in 0..<str.length){
-        if (str[i] <= 'z' && str[i] >= 'a')
+        if (str[i] in 'a'..'z')
             out += str[i] - 32
-        else if (str[i] <= 'Z' && str[i] >= 'A')
+        else if (str[i] in 'A'..'Z')
             out += str[i]
     }
     return out
