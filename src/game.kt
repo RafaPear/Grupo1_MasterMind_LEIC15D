@@ -1,3 +1,7 @@
+// Trabalho 1 de PG-LEIC15D Ano Letivo 24/25
+// Professor: Nuno Leite
+// Grupo I: Francisco Mendes, Gustavo Costa e Rafael Pereira
+
 // Generates a random a String of 4 different Chars
 fun generateSecret(): String {
     while (true) {
