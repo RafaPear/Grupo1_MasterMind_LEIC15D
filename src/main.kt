@@ -1,8 +1,8 @@
-/*
-Trabalho 1 de PG-LEIC2425SI Turma 15D
-Professor: Nuno Leite
-Grupo I: Francisco Mendes, Gustavo Costa e Rafael Pereira
-*/
+// Alternate BRANCH
+
+// Trabalho 1 de PG-LEIC15D Ano Letivo 24/25
+// Professor: Nuno Leite
+// Grupo I: Francisco Mendes, Gustavo Costa e Rafael Pereira
 
 // variable/constant set up
 const val MAX_TRIES = 10 // in 5..20

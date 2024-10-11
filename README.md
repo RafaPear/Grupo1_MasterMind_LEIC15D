@@ -1,4 +1,4 @@
-# 🎮 Mastermind Game (Version with ins)
+# 🎮 Mastermind Game (Versão com ins)
 
 Este projeto é uma implementação do clássico jogo Mastermind, desenvolvido como parte de um trabalho de programação para o curso de Engenharia Informática e Computadores no Instituto Superior de Engenharia de Lisboa (ISEL).
 
@@ -45,9 +45,8 @@ O objetivo do jogo é adivinhar o código secreto gerado pelo computador. O cód
 - Mais por adicionar quando o projeto for reorganizado
 
 ## 🚀 Funcionalidades futuras
-- Implementar a função `getSwapped()` para verificar quantos caracteres estão corretos, mas na posição errada.
-- Implementar a função `printTry()` para formatar e apresentar o estado das tentativas de forma mais clara.
-
+- De momento todas as funcionalidades estão implementadas
+- 
 ## 👥 Contribuidores
 - **Francisco Mendes**
 - **Gustavo Costa**
