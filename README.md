@@ -1,4 +1,4 @@
-# 🎮 Mastermind Game (Version with indexes)
+# 🎮 Mastermind Game (Versão com Índices)
 
 Este projeto é uma implementação do clássico jogo Mastermind, desenvolvido como parte de um trabalho de programação para o curso de Engenharia Informática e Computadores no Instituto Superior de Engenharia de Lisboa (ISEL).
 
@@ -27,30 +27,39 @@ O objetivo do jogo é adivinhar o código secreto gerado pelo computador. O cód
 
 ## 🕹️ Como jogar
 
+### 1. Usando o IntelliJ IDEA:
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/RafaPear/Grupo1_MasterMind_LEIC15D   
+
+2. Abra a pasta com o IntelliJ e execute
+
+### 2. Usando o Terminal:
+
 1. Clone o repositório:
    ```bash
    git clone https://github.com/RafaPear/Grupo1_MasterMind_LEIC15D
-   cd Grupo1_MasterMind_LEIC15D   
 
-2. Execute o jogo:
-    ```bash
-    kotlinc main.kt
-    kotlin MainKt.class
+2. Compile e execute o jogo:
+   ```bash 
+   cd Grupo1_MasterMind_LEIC15D
+   kotlinc .\main.kt , .\game.kt
+   kotlin MainKt.class
 
 3. Insira o seu palpite quando solicitado e tente descobrir o código secreto!
 
 ## 📂 Estrutura do Projeto
 
-- `main.kt`: Contém a lógica principal do jogo, incluindo a geração do código secreto, a validação de palpites, e o cálculo de feedback.
-- Mais por adicionar quando o projeto for reorganizado
+- `main.kt`: Contém o processo que essencialmente roda o jogo.
+- `game.kt`: Contém a lógica que o processo prinpal usa como a geração do código secreto, a validação de palpites, e o cálculo de feedback
 
 ## 🚀 Funcionalidades futuras
-- Implementar a função `getSwapped()` para verificar quantos caracteres estão corretos, mas na posição errada.
-- Implementar a função `printTry()` para formatar e apresentar o estado das tentativas de forma mais clara.
+- De momento todas as funcionalidades estão implementadas
 
 ## 👥 Contribuidores
-- Francisco .....
-- Gustavo .......
+- Francisco Mendes
+- Gustavo Costa
 - Rafael Vermelho Pereira
 
 ## 📄 Licença
