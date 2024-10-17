@@ -47,7 +47,6 @@ fun generateSecret(): String {
 // purposes. the function must only allow an input equal to 4 Chars
 fun readGuess(tries: Int): String {
     while (true){
-        var matchesFound = 0
         when (tries) {
             1 -> print("1st attempt: ")
             2 -> print("2nd attempt: ")
@@ -86,6 +85,7 @@ fun readCheck(guess: String): Boolean {
 // to present a code with 4 capital letters (eg: input - abCD -> output - ABCD)
 fun toUpper(strInput: String): String {
     var returnString = ""
+
     for (char in strInput){
         if (char in 'a'..'z') {
             returnString += char - 32
@@ -131,4 +131,3 @@ fun printTry(numTries: Int, guess: String, corrects: Int, swapped: Int){
     strOut += "$guess -> ${corrects}C + ${swapped}T"
     println(strOut)
 }
-
