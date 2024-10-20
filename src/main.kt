@@ -6,7 +6,7 @@
 
 // variable/constant set up
 const val MAX_TRIES = 10 // in 5..20
-const val SIZE_POSITIONS = 4 // in 2..6
+const val SIZE_POSITIONS = 6 // in 2..6
 const val SIZE_COLORS = 6 // in 2..10 and >= SIZE_POSITIONS
 const val FIRST_COLOR = 'A' // ‘A’ or ‘a’ or ‘0’
 val COLORS = FIRST_COLOR ..< FIRST_COLOR+SIZE_COLORS
@@ -54,8 +54,13 @@ fun readGuess(tries: Int): String {
             else -> print("${tries}th attempt: ")
         }
 
-        val readValue: String = toUpper(readln())
+        var readValue: String = readln()
 
+        if (FIRST_COLOR in 'a'..'z') readValue = toLower(readValue)
+        else if (FIRST_COLOR in 'A'..'Z') readValue = toUpper(readValue)
+
+
+        //if (FIRST_COLOR in 'a'..'z')
         if (!readCheck(readValue)) {
             println("Invalid attempt!")
         } else {
@@ -90,6 +95,18 @@ fun toUpper(strInput: String): String {
         if (char in 'a'..'z') {
             returnString += char - 32
         } else if (char in 'A'..'Z'){
+            returnString += char
+        }
+    }
+    return returnString
+}
+
+fun toLower(strInput: String): String {
+    var returnString = ""
+    for (char in strInput){
+        if (char in 'A'..'Z') {
+            returnString += char + 32
+        } else if (char in 'a'..'z'){
             returnString += char
         }
     }
