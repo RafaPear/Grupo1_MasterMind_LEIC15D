@@ -1,4 +1,8 @@
-// generates a random a String of 4 different Chars
+// Trabalho 1 de PG-LEIC15D Ano Letivo 24/25
+// Professor: Nuno Leite
+// Grupo I: Francisco Mendes, Gustavo Costa e Rafael Pereira
+
+// Generates a random a String of 4 different Chars
 fun generateSecret(): String {
     var returnStr = ""
     while (returnStr.length < SIZE_POSITIONS) {
@@ -10,7 +14,7 @@ fun generateSecret(): String {
     return returnStr
 }
 
-// prompts the user to input their guess
+// Prompts the user to input their guess
 // for the current attempt number and
 // returns the guess as a string. the attempt
 // input (numTries) is probably just for cosmetic printing
